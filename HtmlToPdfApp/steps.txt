@@ -1,0 +1,40 @@
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+
+sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+
+sudo usermod -aG docker ${USER}
+
+newgrp docker
+
+
+scp -i "C:\Users\bashu\Downloads\TestKey.pem" HtmlToPdfApp.zip ubuntu@54.236.29.154:~/
+
+rm HtmlToPdfApp.zip
+
+rm -rf ~/html-to-pdf-app/* ~/html-to-pdf-app/.[!.]* ~/html-to-pdf-app/..?*
+
+# Rebuild the Docker image
+docker-compose build
+
+# Start the container
+docker-compose up -d
+
+# Check if the container is running
+docker ps
+
+docker logs htmltopdfapp-webapp-1
+
+docker-compose down
+
+unzip HtmlToPdfApp.zip -d ~/html-to-pdf-app
+
+docker-compose build --no-cache
+
